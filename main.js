@@ -8,6 +8,7 @@ function displayFirTip(levels, level_height) {
     for (let i = 0; i < levels; i++){
        printLevel(level_height, i, levels)
     }
+    
     displayTrunk(levels / 2 + level_height, Math.floor((level_height + levels - 2) / 2))
 }
 
@@ -73,4 +74,3 @@ function displayTrunk(spacing, width) {
 }
 
 displayFirTip(5, 5)
-
