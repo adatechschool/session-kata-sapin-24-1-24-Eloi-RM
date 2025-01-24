@@ -1,11 +1,20 @@
-function displayFirTip(level_height) {
+function displayFirTip(levels, level_height) {
     let offset = ""
-    for (let i = 0; i < level_height; i++){
+    for (let i = 0; i < levels + level_height; i++){
         offset += " "
     }
     console.log(offset + "+")
+    
+    for (let i = 0; i <= levels; i++){
+        displayLevel(level_height, i)
+    }
+}
 
-
+function displayLevel(height, tip_offset) {
+    for (let i = tip_offset; i < height + tip_offset; i++) {
+        const row  = printLeftTriangle(height + tip_offset + (height - tip_offset), i) + "|" + printRightTriangle(height, i)
+        console.log(row)
+    }
 }
 
 function printStarsRow(number) {
@@ -16,22 +25,20 @@ function printStarsRow(number) {
     return stars
 }
 
-function printRightTriangle(rowsNumber) {
-    for (let i = 0; i < rowsNumber; i++){
-        const row  = printStarsRow(i) + "\\"
-        return row
-    }
+function printRightTriangle(rowsNumber, rowIndex) {
+    const row  = printStarsRow(rowIndex) + "\\"
+    return row
+
 }
 
-function printLeftTriangle(rowsNumber) {
-    for (let i = 0; i < rowsNumber; i++){
-        let offset = ""
-        for (let j = 0; j < rowsNumber - i; j++){
+function printLeftTriangle(rowsNumber, rowIndex) {
+    let offset = ""
+    for (let i = 0; i < rowsNumber - rowIndex - 1; i++){
             offset += " "
-        }
-        const row = offset + "/" + printStarsRow(i)
-        return row
     }
+    const row = offset + "/" + printStarsRow(rowIndex)
+    return row
+
 }
 
-displayFirTip(1)
+displayFirTip(3, 3)
