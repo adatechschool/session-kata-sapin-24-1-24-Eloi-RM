@@ -12,23 +12,35 @@ function displayFirTip(levels, level_height) {
 
 function displayLevel(height, tip_offset) {
     for (let i = tip_offset; i < height + tip_offset; i++) {
-        const row  = printLeftTriangle(height + tip_offset + (height - tip_offset), i) + "|" + printRightTriangle(height, i)
+        const row  = printLeftTriangle(height * 2, i) + "|" + printRightTriangle(i)
         console.log(row)
     }
 }
 
 function printStarsRow(number) {
     let stars = ""
+    let lastCharWasStar = true
+    
     for (let i = 0; i < number; i++){
-        stars += "*"
+        const random = Math.floor(Math.random() * 20)
+        
+        if (random === 19 && lastCharWasStar) {
+            stars += "o"
+            lastCharWasStar = false
+        } else if (random === 0 && lastCharWasStar) {
+            stars += "+"
+            lastCharWasStar = false
+        } else {
+            stars += "*"
+            lastCharWasStar = true
+        }
     }
     return stars
 }
 
-function printRightTriangle(rowsNumber, rowIndex) {
+function printRightTriangle(rowIndex) {
     const row  = printStarsRow(rowIndex) + "\\"
     return row
-
 }
 
 function printLeftTriangle(rowsNumber, rowIndex) {
@@ -38,7 +50,6 @@ function printLeftTriangle(rowsNumber, rowIndex) {
     }
     const row = offset + "/" + printStarsRow(rowIndex)
     return row
-
 }
 
 displayFirTip(3, 3)
